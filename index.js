@@ -20,9 +20,9 @@ const web = express()
 const port = process.env.PORT || 8080
 
 const sovrin = sovrinDID.gen()
-const nonce = sovrinDID.getNonce()
 const signKey = sovrin.secret.signKey
 const keyPair = sovrinDID.getKeyPairFromSignKey(signKey)
+var nonce = sovrinDID.getNonce()
 
 // Functions
 function customEncrypt(string){
@@ -82,6 +82,8 @@ web.post("/d", async(req, res)=>{
             pk: keyPair.publicKey.toString(),
             a: nonce.toString(),
             s: sovrinDID.encryptMessage(decryptedString, nonce, sovrinDID.getSharedSecret(req.body.pk, keyPair.secretKey)).toString()
+        }).on("finish", ()=>{
+            nonce = sovrinDID.getNonce()
         })
     }catch{
         res.send("Unknown error. | 91681HZWgZ")
