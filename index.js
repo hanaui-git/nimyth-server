@@ -60,6 +60,8 @@ web.post("/e", async(req, res)=>{
             pk: keyPair.publicKey.toString(),
             a: nonce.toString(),
             s: sovrinDID.encryptMessage(encryptedString, nonce, sovrinDID.getSharedSecret(req.body.pk, keyPair.secretKey)).toString()
+        }).on("finish", ()=>{
+            nonce = sovrinDID.getNonce()
         })
     }catch{
         res.send("Unknown error. | 91681HZWgZ")
@@ -82,8 +84,6 @@ web.post("/d", async(req, res)=>{
             pk: keyPair.publicKey.toString(),
             a: nonce.toString(),
             s: sovrinDID.encryptMessage(decryptedString, nonce, sovrinDID.getSharedSecret(req.body.pk, keyPair.secretKey)).toString()
-        }).on("finish", ()=>{
-            nonce = sovrinDID.getNonce()
         })
     }catch{
         res.send("Unknown error. | 91681HZWgZ")
