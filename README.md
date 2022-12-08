@@ -8,7 +8,7 @@ git clone https://github.com/hanaui-git/nimyth-server
 ```
 NpmJS:
 ```
-npm i xchacha20-js simple-aes-256 shuffle-seed sovrin-did express
+npm i mongodb simple-aes-256 js-string-compression body-parser express hqc
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ node index.js
 ```
 
 ## Note
-Before hosting please set the keys in index.js first.
+Before hosting please set the keys in options.json first and place your MongoDB database url in .env
 
 ## License
 MIT © Hanaui
