@@ -43,7 +43,7 @@
 
     web.get("/pk", (req, res)=>{
         res.json({
-            data: keyPair.publicKey.toString(),
+            data: keyPair.publicKey.toString()
         })
     })
     
@@ -83,7 +83,7 @@
 
             if(!decryptedPasswords) return res.json({
                 status: "failed",
-                data: "a"
+                data: false
             })
 
             res.json({
